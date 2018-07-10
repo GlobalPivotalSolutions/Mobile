@@ -1,0 +1,28 @@
+12 pages: home, item_class, items, company, mda_type, mda, xders, bids, notifications, communications,  analysis, and about.
+
+In home page jumbotron title: "Tenda",  text: "Market Price Analysis and Tender Fulfillment", button url: "customers".
+
+9 collection: item_class, items, companies, mda_types, mdas, xders, bids, notifications, messages.
+
+In item_class collection fields: class_name and description.
+In items collection fields: item_class, name, price, add_date, location, contributor.
+In companies collection fields: name, reg_no, cert, tax_clearance, date_formed and reg_cap.
+In mda_types collection fields: name.
+In mdas collection fields: name, address, email, contact, home_page.
+In xders collection fields: issue_date, particulars, mda, close_date, closed, spec_docs, requirements.
+In responses collection fields: tender, company, sub_date, submission, rec_date.
+In notifications collection fields: not_date, message, msg_from, msg_to, shown, hidden.
+
+
+in  item_class page I want CRUD for item_class collection.
+in  items page I want CRUD for items collection.
+in  company page I want CRUD for companies collection.
+in  mda_type page I want CRUD for  mda_types collection.
+in  mda page I want CRUD for mdas collection.
+in  xders page I want CRUD for xders collection.
+in  notifications page I want CRUD for notifications collection.
+in  communications page I want CRUD for  messages collection.
+in  bids page I want CRUD for bids collection.
+
+In about page text: "Thank you for using Tenda. look for the source code on github".
+

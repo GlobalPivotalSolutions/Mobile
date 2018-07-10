@@ -1,0 +1,965 @@
+{
+	"application": {
+		"title": "Tendax",
+		"roles": [
+			"admin",
+			"user"
+		],
+		"default_role": "user",
+		"collections": [
+			{
+				"name": "users",
+				"type": "collection"
+			},
+			{
+				"name": "item_classes",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "item_class",
+						"title": "Item Class",
+						"type": "string",
+						"required": true
+					},
+					{
+						"name": "description",
+						"title": "Description",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "items",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "item_class_id",
+						"title": "Item Class",
+						"type": "string",
+						"input": "select",
+						"lookup_field": "Item Class",
+						"join_collection": "item_classes",
+						"join_container": "item_class",
+						"join_fields": [
+							"name"
+						]
+					},
+					{
+						"name": "code",
+						"title": "Code",
+						"type": "string"
+					},
+					{
+						"name": "name",
+						"title": "Name",
+						"type": "string",
+						"required": true
+					},
+					{
+						"name": "description",
+						"title": "Description",
+						"type": "string",
+						"input": "textarea"
+					}
+				]
+			},
+			{
+				"name": "tenders",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "title",
+						"title": "Title",
+						"type": "string"
+					},
+					{
+						"name": "issue_date",
+						"title": "Issue Date",
+						"type": "string",
+						"input": "datepicker"
+					},
+					{
+						"name": "close_date",
+						"title": "Close Date",
+						"type": "string",
+						"input": "datepicker"
+					},
+					{
+						"name": "mda",
+						"title": "Mda",
+						"type": "string"
+					},
+					{
+						"name": "address",
+						"title": "Address",
+						"type": "string",
+						"input": "textarea"
+					},
+					{
+						"name": "description",
+						"title": "Description",
+						"type": "string",
+						"input": "textarea"
+					},
+					{
+						"name": "particulars",
+						"title": "Particulars",
+						"type": "string",
+						"input": "textarea"
+					},
+					{
+						"name": "requirements",
+						"title": "Requirements",
+						"type": "string"
+					},
+					{
+						"name": "items",
+						"title": "Items",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "mda_types",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "name",
+						"title": "Name",
+						"type": "string"
+					},
+					{
+						"name": "description",
+						"title": "Description",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "mdas",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "name",
+						"title": "Name",
+						"type": "string"
+					},
+					{
+						"name": "address",
+						"title": "Address",
+						"type": "string"
+					},
+					{
+						"name": "phone",
+						"title": "Phone",
+						"type": "string"
+					},
+					{
+						"name": "email",
+						"title": "Email",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "notifications",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "message",
+						"title": "Message",
+						"type": "string"
+					},
+					{
+						"name": "display_date",
+						"title": "Display Date",
+						"type": "string"
+					},
+					{
+						"name": "users",
+						"title": "Users",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "messages",
+				"type": "collection"
+			},
+			{
+				"name": "prices",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "item",
+						"title": "Item",
+						"type": "string"
+					},
+					{
+						"name": "price",
+						"title": "Price",
+						"type": "string"
+					},
+					{
+						"name": "location",
+						"title": "Location",
+						"type": "string"
+					},
+					{
+						"name": "submit_date",
+						"title": "Submit Date",
+						"type": "string"
+					},
+					{
+						"name": "contributor",
+						"title": "Contributor",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "tender_responses",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "tender_id",
+						"title": "Tender",
+						"type": "string",
+						"input": "select",
+						"join_collection": "tenders",
+						"join_container": "tender"
+					},
+					{
+						"name": "response_date",
+						"title": "Response Date",
+						"type": "string"
+					},
+					{
+						"name": "response_docs",
+						"title": "Response Docs",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "notes",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "note",
+						"title": "Note",
+						"type": "string",
+						"input": "textarea"
+					},
+					{
+						"name": "note_date",
+						"title": "Note Date",
+						"type": "date",
+						"default": "today"
+					},
+					{
+						"name": "hidden",
+						"title": "Hidden",
+						"type": "bool",
+						"input": "checkbox"
+					}
+				]
+			}
+		],
+		"queries": [
+			{
+				"name": "admin_users",
+				"collection": "users",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "admin_user",
+				"collection": "users",
+				"find_one": true,
+				"filter": "{ \"_id\": \":userId\" }",
+				"options": "{}"
+			},
+			{
+				"name": "users_null",
+				"collection": "users",
+				"find_one": true,
+				"filter": "{ \"_id\": null }",
+				"options": "{}"
+			},
+			{
+				"name": "current_user_data",
+				"collection": "users",
+				"find_one": true,
+				"filter": "{ \"_id\": \"Meteor.userId()\" }",
+				"options": "{}"
+			},
+			{
+				"name": "ic_list",
+				"collection": "item_classes"
+			},
+			{
+				"name": "items_list",
+				"collection": "items"
+			},
+			{
+				"name": "mda_types_list",
+				"collection": "mda_types"
+			},
+			{
+				"name": "mdas_list",
+				"collection": "mdas"
+			},
+			{
+				"name": "tenders_list",
+				"collection": "tenders"
+			},
+			{
+				"name": "msg_list",
+				"collection": "messages"
+			},
+			{
+				"name": "notifications_list",
+				"collection": "notifications"
+			},
+			{
+				"name": "prices_list",
+				"collection": "prices"
+			},
+			{
+				"name": "notes_list",
+				"collection": "notes"
+			},
+			{
+				"name": "tr_list",
+				"collection": "tender_responses"
+			}
+		],
+		"free_zone": {
+			"type": "zone",
+			"pages": [
+				{
+					"name": "home_public",
+					"type": "page",
+					"components": [
+						{
+							"name": "home_jumbotron",
+							"type": "jumbotron",
+							"title": "Tendax",
+							"text": "Market Price Index and Data Collection\n(There is a mobile app that you can use on your phone to cut down on your data transfer charges)",
+							"button_title": "Continue &raquo;",
+							"button_route": "login",
+							"object_type": "jumbotron"
+						}
+					]
+				}
+			]
+		},
+		"public_zone": {
+			"type": "zone",
+			"components": [
+				{
+					"name": "left_menu",
+					"type": "menu",
+					"items": [
+						{
+							"title": "Home",
+							"route": "home_public"
+						},
+						{
+							"title": "Price Review",
+							"route": "price_review"
+						}
+					],
+					"object_type": "menu"
+				},
+				{
+					"name": "right_menu",
+					"type": "menu",
+					"items": [
+						{
+							"title": "Register",
+							"route": "register"
+						},
+						{
+							"title": "Login",
+							"route": "login"
+						}
+					],
+					"object_type": "menu"
+				}
+			],
+			"pages": [
+				{
+					"name": "login",
+					"type": "page",
+					"template": "login"
+				},
+				{
+					"name": "register",
+					"type": "page",
+					"template": "register"
+				},
+				{
+					"name": "verify_email",
+					"type": "page",
+					"template": "verify_email",
+					"route_params": [
+						"verifyEmailToken"
+					]
+				},
+				{
+					"name": "forgot_password",
+					"type": "page",
+					"template": "forgot_password"
+				},
+				{
+					"name": "reset_password",
+					"type": "page",
+					"template": "reset_password",
+					"route_params": [
+						"resetPasswordToken"
+					]
+				},
+				{
+					"name": "price_review",
+					"type": "page",
+					"title": "Price Review",
+					"query_name": "prices_list",
+					"components": [
+						{
+							"name": "price_data_view",
+							"type": "data_view",
+							"object_type": "data_view"
+						},
+						{
+							"name": "pr_daview",
+							"type": "data_view",
+							"dest_position": "bottom",
+							"title": "Price Data Review",
+							"text_if_empty": "No data here/Loading Prices",
+							"object_type": "data_view"
+						}
+					],
+					"html": "<template name=\"p_rev_template\">\n\t<div class=\"page-container\" id=\"content\">\n\t\t<div class=\"row\" id=\"title_row\">\n\t\t\t<div class=\"col-md-12\">\n\t\t\t\t<h2 id=\"page_title\" class=\"pull-left\">\n\t\t\t\t\t<a href=\"#\" id=\"page-back-button\" class=\"btn btn-default\" title=\"back\">\n\t\t\t\t\t\t<span class=\"fa fa-chevron-left\">\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</a>\n\t\t\t\t\t<span id=\"page-title-icon\" class=\"PAGE_TITLE_ICON_CLASS\">\n\t\t\t\t\t</span>\n\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tPrice Review\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t</h2>\n\t\t\t\t<div id=\"page_menu\" class=\"pull-right\">\n\t\t\t\t\t<a href=\"#\" id=\"page-close-button\" class=\"btn btn-default pull-right\" title=\"Close\">\n\t\t\t\t\t\t<span class=\"fa fa-times\">\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<p id=\"page_text\">\n\t\t\t\n\t\t\t\t\t\tPAGE_TEXT\n\t\t\t\t\t\n\t\t</p>\n\t</div>\n\t<div id=\"background-image\" style=\"background-image: url(BACKGROUND_IMAGE);\">\n\t</div>\n</template>\n\n",
+					"js": "\n\nTemplate.p_rev_template.events({\n\n});\n\nTemplate.p_rev_template.helpers({\n\n});",
+					"jsx": "/*IMPORTS*/\n\nexport class p_rev_template extends Component {\n\n\tconstructor() {\n\t\tsuper();\n\t}\n\n\tcomponentWillMount() {\n\t\t/*TEMPLATE_CREATED_CODE*/\n\t}\n\n\tcomponentWillUnmount() {\n\t\t/*TEMPLATE_DESTROYED_CODE*/\n\t}\n\n\tcomponentDidMount() {\n\t\t/*TEMPLATE_RENDERED_CODE*/\n\n\t\tMeteor.defer(function() {\n\t\t\tglobalOnRendered();\n\t\t});\n\t}\n\n\trender() {\n\t\treturn (\n\t\t\t<div>\n\t\t\t\t<div className=\"page-container\" id=\"content\">\n\t\t\t\t\t<div className=\"row\" id=\"title_row\">\n\t\t\t\t\t\t<div className=\"col-md-12\">\n\t\t\t\t\t\t\t<h2 id=\"page_title\" className=\"pull-left\">\n\t\t\t\t\t\t\t\t<a href=\"#\" id=\"page-back-button\" className=\"btn btn-default\" title=\"back\">\n\t\t\t\t\t\t\t\t\t<span className=\"fa fa-chevron-left\">\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t<span id=\"page-title-icon\" className=\"PAGE_TITLE_ICON_CLASS\">\n\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\tPrice Review\n\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</h2>\n\t\t\t\t\t\t\t<div id=\"page_menu\" className=\"pull-right\">\n\t\t\t\t\t\t\t\t<a href=\"#\" id=\"page-close-button\" className=\"btn btn-default pull-right\" title=\"Close\">\n\t\t\t\t\t\t\t\t\t<span className=\"fa fa-times\">\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<p id=\"page_text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tPAGE_TEXT\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t</p>\n\t\t\t\t</div>\n\t\t\t\t<div id=\"background-image\" style=\"background-image: url(BACKGROUND_IMAGE);\">\n\t\t\t\t</div>\n\n\t\t\t</div>\n\t\t);\n\t}\n}\n\nexport const p_rev_templateContainer = createContainer(function(props) {\n\t/*SUBSCRIPTIONS*/\n}, p_rev_template);",
+					"gasoline": {
+						"type": "gasoline",
+						"templates": [
+							{
+								"name": "p_rev_template",
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [
+															{
+																"children": [
+																	{
+																		"children": [
+																			{
+																				"type": "html",
+																				"element": "span",
+																				"attributes": [
+																					{
+																						"name": "class",
+																						"value": "fa fa-chevron-left"
+																					}
+																				],
+																				"object_type": "gas_html"
+																			}
+																		],
+																		"type": "html",
+																		"element": "a",
+																		"attributes": [
+																			{
+																				"name": "href",
+																				"value": "#"
+																			},
+																			{
+																				"name": "id",
+																				"value": "page-back-button"
+																			},
+																			{
+																				"name": "class",
+																				"value": "btn btn-default"
+																			},
+																			{
+																				"name": "title",
+																				"value": "back"
+																			}
+																		],
+																		"object_type": "gas_html"
+																	},
+																	{
+																		"type": "html",
+																		"element": "span",
+																		"attributes": [
+																			{
+																				"name": "id",
+																				"value": "page-title-icon"
+																			},
+																			{
+																				"name": "class",
+																				"value": "PAGE_TITLE_ICON_CLASS"
+																			}
+																		],
+																		"object_type": "gas_html"
+																	},
+																	{
+																		"type": "text",
+																		"text": "\n\t\t\t\t\tPrice Review\n\t\t\t\t",
+																		"object_type": "gas_text"
+																	}
+																],
+																"type": "html",
+																"element": "h2",
+																"attributes": [
+																	{
+																		"name": "id",
+																		"value": "page_title"
+																	},
+																	{
+																		"name": "class",
+																		"value": "pull-left"
+																	}
+																],
+																"object_type": "gas_html"
+															},
+															{
+																"children": [
+																	{
+																		"children": [
+																			{
+																				"type": "html",
+																				"element": "span",
+																				"attributes": [
+																					{
+																						"name": "class",
+																						"value": "fa fa-times"
+																					}
+																				],
+																				"object_type": "gas_html"
+																			}
+																		],
+																		"type": "html",
+																		"element": "a",
+																		"attributes": [
+																			{
+																				"name": "href",
+																				"value": "#"
+																			},
+																			{
+																				"name": "id",
+																				"value": "page-close-button"
+																			},
+																			{
+																				"name": "class",
+																				"value": "btn btn-default pull-right"
+																			},
+																			{
+																				"name": "title",
+																				"value": "Close"
+																			}
+																		],
+																		"object_type": "gas_html"
+																	}
+																],
+																"type": "html",
+																"attributes": [
+																	{
+																		"name": "id",
+																		"value": "page_menu"
+																	},
+																	{
+																		"name": "class",
+																		"value": "pull-right"
+																	}
+																],
+																"object_type": "gas_html"
+															}
+														],
+														"type": "html",
+														"attributes": [
+															{
+																"name": "class",
+																"value": "col-md-12"
+															}
+														],
+														"object_type": "gas_html"
+													}
+												],
+												"type": "html",
+												"attributes": [
+													{
+														"name": "class",
+														"value": "row"
+													},
+													{
+														"name": "id",
+														"value": "title_row"
+													}
+												],
+												"object_type": "gas_html"
+											},
+											{
+												"children": [
+													{
+														"type": "text",
+														"text": "\n\t\t\tPAGE_TEXT\n\t\t",
+														"object_type": "gas_text"
+													}
+												],
+												"type": "html",
+												"element": "p",
+												"attributes": [
+													{
+														"name": "id",
+														"value": "page_text"
+													}
+												],
+												"object_type": "gas_html"
+											}
+										],
+										"type": "html",
+										"attributes": [
+											{
+												"name": "class",
+												"value": "page-container"
+											},
+											{
+												"name": "id",
+												"value": "content"
+											}
+										],
+										"object_type": "gas_html"
+									},
+									{
+										"type": "html",
+										"attributes": [
+											{
+												"name": "id",
+												"value": "background-image"
+											},
+											{
+												"name": "style",
+												"value": "background-image: url(BACKGROUND_IMAGE);"
+											}
+										],
+										"object_type": "gas_html"
+									}
+								],
+								"type": "template"
+							}
+						]
+					},
+					"use_gasoline": true,
+					"user_defined_template": true,
+					"meta_description": "Review of Submitted Prices",
+					"text": "Here is a review of currently available prices",
+					"parent_layout": true
+				}
+			],
+			"default_route": "home_public"
+		},
+		"private_zone": {
+			"type": "zone",
+			"components": [
+				{
+					"name": "left_menu",
+					"type": "menu",
+					"items": [
+						{
+							"title": "Home",
+							"route": "home_private",
+							"icon_class": "fa fa-home"
+						}
+					],
+					"object_type": "menu"
+				},
+				{
+					"name": "right_menu",
+					"type": "menu",
+					"items": [
+						{
+							"title": "Review",
+							"route": "price_review"
+						},
+						{
+							"title": "Admin",
+							"route": "admin",
+							"icon_class": "fa fa-wrench"
+						},
+						{
+							"title": "{{userEmail}}",
+							"icon_class": "fa fa-cog",
+							"items": [
+								{
+									"title": "Settings",
+									"route": "user_settings"
+								},
+								{
+									"title": "Logout",
+									"route": "logout"
+								}
+							]
+						}
+					],
+					"object_type": "menu"
+				}
+			],
+			"pages": [
+				{
+					"name": "home_private",
+					"type": "page",
+					"title": "Welcome {{userFullName}}!"
+				},
+				{
+					"name": "admin",
+					"type": "page",
+					"components": [
+						{
+							"name": "side_menu",
+							"type": "menu",
+							"class": "nav nav-stacked nav-pills",
+							"items": [
+								{
+									"title": "Users",
+									"route": "admin.users"
+								}
+							],
+							"object_type": "menu"
+						}
+					],
+					"roles": [
+						"admin"
+					],
+					"pages": [
+						{
+							"name": "users",
+							"type": "page",
+							"components": [
+								{
+									"name": "view",
+									"type": "data_view",
+									"title": "Users",
+									"query_name": "admin_users",
+									"text_if_empty": "No users yet",
+									"insert_route": "admin.users.insert",
+									"details_route": "admin.users.details",
+									"edit_route": "admin.users.edit",
+									"details_route_params": [
+										{
+											"name": "userId",
+											"value": "this._id"
+										}
+									],
+									"edit_route_params": [
+										{
+											"name": "userId",
+											"value": "this._id"
+										}
+									],
+									"fields": [
+										{
+											"name": "profile.name",
+											"title": "Name",
+											"type": "string"
+										},
+										{
+											"name": "roles",
+											"title": "Role",
+											"type": "string"
+										}
+									],
+									"object_type": "data_view"
+								}
+							],
+							"pages": [
+								{
+									"name": "details",
+									"type": "page",
+									"components": [
+										{
+											"name": "details_form",
+											"type": "form",
+											"title": "User details",
+											"query_name": "admin_user",
+											"mode": "read_only",
+											"close_route": "admin.users",
+											"back_route": "admin.users",
+											"fields": [
+												{
+													"name": "profile.name",
+													"title": "Name",
+													"type": "string"
+												},
+												{
+													"name": "roles",
+													"title": "Role",
+													"type": "string"
+												}
+											],
+											"object_type": "form"
+										}
+									],
+									"route_params": [
+										"userId"
+									]
+								},
+								{
+									"name": "insert",
+									"type": "page",
+									"components": [
+										{
+											"name": "insert_form",
+											"type": "form",
+											"title": "Add new user",
+											"query_name": "users_null",
+											"mode": "insert",
+											"submit_route": "admin.users",
+											"cancel_route": "admin.users",
+											"fields": [
+												{
+													"name": "profile.name",
+													"title": "Name",
+													"type": "string",
+													"required": true
+												},
+												{
+													"name": "email",
+													"title": "E-mail",
+													"type": "email",
+													"required": true
+												},
+												{
+													"name": "password",
+													"title": "Password",
+													"type": "string",
+													"required": true,
+													"input": "password"
+												}
+											],
+											"object_type": "form"
+										}
+									]
+								},
+								{
+									"name": "edit",
+									"type": "page",
+									"components": [
+										{
+											"name": "edit_form",
+											"type": "form",
+											"title": "Edit user",
+											"query_name": "admin_user",
+											"mode": "update",
+											"submit_route": "admin.users",
+											"cancel_route": "admin.users",
+											"fields": [
+												{
+													"name": "profile.name",
+													"title": "Name",
+													"type": "string",
+													"required": true
+												},
+												{
+													"name": "roles",
+													"title": "Role",
+													"type": "array",
+													"input": "radio",
+													"input_items": [
+														{
+															"value": "user",
+															"title": "User"
+														},
+														{
+															"value": "admin",
+															"title": "Admin"
+														},
+														{
+															"value": "blocked",
+															"title": "Blocked"
+														}
+													]
+												}
+											],
+											"object_type": "form"
+										}
+									],
+									"route_params": [
+										"userId"
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "user_settings",
+					"type": "page",
+					"components": [
+						{
+							"name": "side_menu",
+							"type": "menu",
+							"class": "nav nav-stacked nav-pills",
+							"items": [
+								{
+									"title": "Profile",
+									"route": "user_settings.profile"
+								},
+								{
+									"title": "Change password",
+									"route": "user_settings.change_pass"
+								}
+							],
+							"object_type": "menu"
+						}
+					],
+					"roles": [
+						"user",
+						"admin"
+					],
+					"pages": [
+						{
+							"name": "profile",
+							"type": "page",
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"title": "Edit your profile",
+									"query_name": "current_user_data",
+									"mode": "update",
+									"submit_route": "user_settings.profile",
+									"fields": [
+										{
+											"name": "profile.name",
+											"title": "Name",
+											"type": "string",
+											"required": true
+										}
+									],
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "change_pass",
+							"type": "page",
+							"template": "change_pass"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"type": "page",
+					"template": "logout"
+				}
+			]
+		}
+	}
+}

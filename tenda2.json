@@ -1,0 +1,1064 @@
+{
+	"application": {
+		"collections": [
+			{
+				"name": "item_class",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "class_name",
+						"title": "Class_name",
+						"type": "string"
+					},
+					{
+						"name": "description",
+						"title": "Description",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "items",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "item_class",
+						"title": "Item_class",
+						"type": "string"
+					},
+					{
+						"name": "name",
+						"title": "Name",
+						"type": "string"
+					},
+					{
+						"name": "price",
+						"title": "Price",
+						"type": "string"
+					},
+					{
+						"name": "add_date",
+						"title": "Add_date",
+						"type": "string"
+					},
+					{
+						"name": "location",
+						"title": "Location",
+						"type": "string"
+					},
+					{
+						"name": "contributor",
+						"title": "Contributor",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "companies",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "name",
+						"title": "Name",
+						"type": "string"
+					},
+					{
+						"name": "reg_no",
+						"title": "Reg_no",
+						"type": "string"
+					},
+					{
+						"name": "cert",
+						"title": "Cert",
+						"type": "string"
+					},
+					{
+						"name": "tax_clearance",
+						"title": "Tax_clearance",
+						"type": "string"
+					},
+					{
+						"name": "date_formed",
+						"title": "Date_formed",
+						"type": "string"
+					},
+					{
+						"name": "reg_cap",
+						"title": "Reg_cap",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "mda_types",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "name",
+						"title": "Name",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "mdas",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "mda_type_id",
+						"title": "Mda Type",
+						"type": "string",
+						"input": "select",
+						"join_collection": "mda_types",
+						"join_container": "mda_type",
+						"join_fields": [
+							"name"
+						]
+					},
+					{
+						"name": "name",
+						"title": "Name",
+						"type": "string"
+					},
+					{
+						"name": "address",
+						"title": "Address",
+						"type": "string"
+					},
+					{
+						"name": "email",
+						"title": "Email",
+						"type": "string"
+					},
+					{
+						"name": "contact",
+						"title": "Contact",
+						"type": "string"
+					},
+					{
+						"name": "home_page",
+						"title": "Home_page",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "tenders",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "issue_date",
+						"title": "Issue_date",
+						"type": "string"
+					},
+					{
+						"name": "title",
+						"title": "Title",
+						"type": "string",
+						"required": true
+					},
+					{
+						"name": "mda_id",
+						"title": "Mda",
+						"type": "string",
+						"required": true,
+						"join_collection": "mdas",
+						"join_container": "mda",
+						"join_fields": [
+							"name"
+						]
+					},
+					{
+						"name": "particulars",
+						"title": "Particulars",
+						"type": "string"
+					},
+					{
+						"name": "close_date",
+						"title": "Close_date",
+						"type": "string"
+					},
+					{
+						"name": "closed",
+						"title": "Closed",
+						"type": "string"
+					},
+					{
+						"name": "spec_docs",
+						"title": "Spec_docs",
+						"type": "string"
+					},
+					{
+						"name": "requirements",
+						"title": "Requirements",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "bids",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "tender",
+						"title": "tender",
+						"type": "string",
+						"join_collection": "tenders"
+					},
+					{
+						"name": "company",
+						"title": "Company",
+						"type": "string"
+					},
+					{
+						"name": "sub_date",
+						"title": "Sub_date",
+						"type": "string"
+					},
+					{
+						"name": "submission",
+						"title": "Submission",
+						"type": "string"
+					},
+					{
+						"name": "rec_date",
+						"title": "Rec_date",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "notifications",
+				"type": "collection",
+				"fields": [
+					{
+						"name": "not_date",
+						"title": "Not_date",
+						"type": "string"
+					},
+					{
+						"name": "message",
+						"title": "Message",
+						"type": "string"
+					},
+					{
+						"name": "msg_from",
+						"title": "Msg_from",
+						"type": "string"
+					},
+					{
+						"name": "msg_to",
+						"title": "Msg_to",
+						"type": "string"
+					},
+					{
+						"name": "shown",
+						"title": "Shown",
+						"type": "string"
+					},
+					{
+						"name": "hidden",
+						"title": "Hidden",
+						"type": "string"
+					}
+				]
+			},
+			{
+				"name": "messages",
+				"type": "collection"
+			}
+		],
+		"queries": [
+			{
+				"name": "item_class",
+				"collection": "item_class",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "item_class_empty",
+				"collection": "item_class",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "item_class_selected",
+				"collection": "item_class",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "items",
+				"collection": "items",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "items_empty",
+				"collection": "items",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "items_selected",
+				"collection": "items",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "companies",
+				"collection": "companies",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "companies_empty",
+				"collection": "companies",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "companies_selected",
+				"collection": "companies",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "mda_types",
+				"collection": "mda_types",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "mda_types_empty",
+				"collection": "mda_types",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "mda_types_selected",
+				"collection": "mda_types",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "mdas",
+				"collection": "mdas",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "mdas_empty",
+				"collection": "mdas",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "mdas_selected",
+				"collection": "mdas",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "tenders",
+				"collection": "tenders",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "tenders_empty",
+				"collection": "tenders",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "tenders_selected",
+				"collection": "tenders",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "notifications",
+				"collection": "notifications",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "notifications_empty",
+				"collection": "notifications",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "notifications_selected",
+				"collection": "notifications",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "messages",
+				"collection": "messages",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "messages_empty",
+				"collection": "messages",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "messages_selected",
+				"collection": "messages",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			},
+			{
+				"name": "bids",
+				"collection": "bids",
+				"filter": "{}",
+				"options": "{}"
+			},
+			{
+				"name": "bids_empty",
+				"collection": "bids",
+				"find_one": true,
+				"filter": "{\"_id\":null}",
+				"options": "{}"
+			},
+			{
+				"name": "bids_selected",
+				"collection": "bids",
+				"find_one": true,
+				"filter": "{\"_id\":\":customerId\"}",
+				"options": "{}"
+			}
+		],
+		"free_zone": {
+			"type": "zone",
+			"components": [
+				{
+					"name": "main_menu",
+					"type": "menu",
+					"class": "nav navbar-nav",
+					"items": [
+						{
+							"title": "Home",
+							"route": "home"
+						},
+						{
+							"title": "Item_class",
+							"route": "item_class"
+						},
+						{
+							"title": "Items",
+							"route": "items"
+						},
+						{
+							"title": "Company",
+							"route": "company"
+						},
+						{
+							"title": "Mda_type",
+							"route": "mda_type"
+						},
+						{
+							"title": "Mda",
+							"route": "mda"
+						},
+						{
+							"title": "Xders",
+							"route": "tenders"
+						},
+						{
+							"title": "Bids",
+							"route": "bids"
+						},
+						{
+							"title": "Notifications",
+							"route": "notifications"
+						},
+						{
+							"title": "Communications",
+							"route": "communications"
+						},
+						{
+							"title": "Analysis",
+							"route": "analysis"
+						},
+						{
+							"title": "About",
+							"route": "about"
+						}
+					],
+					"object_type": "menu"
+				}
+			],
+			"pages": [
+				{
+					"name": "home",
+					"type": "page",
+					"components": [
+						{
+							"name": "jumbotron",
+							"type": "jumbotron",
+							"title": "Tenda",
+							"text": "Market Price Analysis and Tender Fulfillment",
+							"object_type": "jumbotron"
+						}
+					]
+				},
+				{
+					"name": "item_class",
+					"type": "page",
+					"title": "Item_class",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "item_class",
+							"insert_route": "item_class.insert",
+							"edit_route": "item_class.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "item_class_empty",
+									"mode": "insert",
+									"submit_route": "item_class",
+									"cancel_route": "item_class",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "item_class_selected",
+									"mode": "update",
+									"submit_route": "item_class",
+									"cancel_route": "item_class",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "items",
+					"type": "page",
+					"title": "Items",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "items",
+							"insert_route": "items.insert",
+							"edit_route": "items.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "items_empty",
+									"mode": "insert",
+									"submit_route": "items",
+									"cancel_route": "items",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "items_selected",
+									"mode": "update",
+									"submit_route": "items",
+									"cancel_route": "items",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "company",
+					"type": "page",
+					"title": "Company",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "companies",
+							"insert_route": "company.insert",
+							"edit_route": "company.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "companies_empty",
+									"mode": "insert",
+									"submit_route": "company",
+									"cancel_route": "company",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "companies_selected",
+									"mode": "update",
+									"submit_route": "company",
+									"cancel_route": "company",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "mda_type",
+					"type": "page",
+					"title": "Mda_type",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "mda_types",
+							"insert_route": "mda_type.insert",
+							"edit_route": "mda_type.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "mda_types_empty",
+									"mode": "insert",
+									"submit_route": "mda_type",
+									"cancel_route": "mda_type",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "mda_types_selected",
+									"mode": "update",
+									"submit_route": "mda_type",
+									"cancel_route": "mda_type",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "mda",
+					"type": "page",
+					"title": "Mda",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "mdas",
+							"insert_route": "mda.insert",
+							"edit_route": "mda.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "mdas_empty",
+									"mode": "insert",
+									"submit_route": "mda",
+									"cancel_route": "mda",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "mdas_selected",
+									"mode": "update",
+									"submit_route": "mda",
+									"cancel_route": "mda",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "tenders",
+					"type": "page",
+					"title": "Tenders",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "tenders",
+							"insert_route": "xders.insert",
+							"edit_route": "xders.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "tenders_empty",
+									"mode": "insert",
+									"submit_route": "tenders",
+									"cancel_route": "tenders",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "tenders_selected",
+									"mode": "update",
+									"submit_route": "tenders",
+									"cancel_route": "tenders",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "bids",
+					"type": "page",
+					"title": "Bids",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "bids",
+							"insert_route": "bids.insert",
+							"edit_route": "bids.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "bids_empty",
+									"mode": "insert",
+									"submit_route": "bids",
+									"cancel_route": "bids",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "bids_selected",
+									"mode": "update",
+									"submit_route": "bids",
+									"cancel_route": "bids",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "notifications",
+					"type": "page",
+					"title": "Notifications",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "notifications",
+							"insert_route": "notifications.insert",
+							"edit_route": "notifications.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "notifications_empty",
+									"mode": "insert",
+									"submit_route": "notifications",
+									"cancel_route": "notifications",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "notifications_selected",
+									"mode": "update",
+									"submit_route": "notifications",
+									"cancel_route": "notifications",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "communications",
+					"type": "page",
+					"title": "Communications",
+					"components": [
+						{
+							"name": "list",
+							"type": "data_view",
+							"query_name": "messages",
+							"insert_route": "communications.insert",
+							"edit_route": "communications.edit",
+							"edit_route_params": [
+								{
+									"name": "customerId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Insert",
+									"query_name": "messages_empty",
+									"mode": "insert",
+									"submit_route": "communications",
+									"cancel_route": "communications",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "edit",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit",
+									"query_name": "messages_selected",
+									"mode": "update",
+									"submit_route": "communications",
+									"cancel_route": "communications",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"customerId"
+							]
+						}
+					]
+				},
+				{
+					"name": "analysis",
+					"type": "page",
+					"title": "Analysis"
+				},
+				{
+					"name": "about",
+					"type": "page",
+					"title": "About",
+					"text": "Thank you for using Tenda. look for the source code on github"
+				}
+			]
+		}
+	}
+}
+
